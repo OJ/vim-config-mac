@@ -13,6 +13,8 @@ call pathogen#helptags()
 
 let mapleader=","
 
+set nrformats=
+set nocompatible
 set ts=2
 set sw=2
 set expandtab
@@ -172,10 +174,10 @@ imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 nmap <leader>fef ggVG=
 
 " Next buffer
-nmap <silent> ,. :bnext<CR>
+nmap <silent> <Leader>. :bnext<CR>
 
 " Previous buffer
-nmap <silent> ,m :bprev<CR>
+nmap <silent> <Leader>, :bprev<CR>
 
 " upper/lower word
 nmap <leader>u mQviwU`Q
@@ -230,26 +232,34 @@ filetype on
 filetype plugin on
 filetype indent on
 
+set laststatus=2  " always show the status bar
+let g:Powerline_symbols='fancy'
+
 "set backupdir=~/.vim/_backup//    " where to put backup files.
 "set directory=~/.vim/_temp//      " where to put swap files.
 
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
-
-  " Without setting this, ZoomWin restores windows in a way that causes
-  " equalalways behavior to be triggered the next time CommandT is used.
-  " This is likely a bludgeon to solve some other issue, but it works
-  set noequalalways
-
-  " Start the status line
-  set statusline=%f\ %m\ %r
-
-  " Finish the statusline
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
-endif
+"if has("statusline") && !&cp
+"  set laststatus=2  " always show the status bar
+"
+"  " Without setting this, ZoomWin restores windows in a way that causes
+"  " equalalways behavior to be triggered the next time CommandT is used.
+"  " This is likely a bludgeon to solve some other issue, but it works
+"  set noequalalways
+"
+"  " Start the status line
+"  set statusline=%f\ %m\ %r
+"
+"  " Finish the statusline
+"  set statusline+=Line:%l/%L[%p%%]
+"  set statusline+=Col:%v
+"  set statusline+=Buf:#%n
+"  set statusline+=[%b][0x%B]
+"endif
 
 map <leader>zw <Plug>ZoomWin
 
+" rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
